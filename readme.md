@@ -12,3 +12,9 @@ To call the endpoint, download the rest client extension and go to the file test
 # GET
 http://localhost:8080/api/v1/products/test
 ```
+
+Also create a .env file containing
+```
+# .env FILE
+PORT=3000
+```

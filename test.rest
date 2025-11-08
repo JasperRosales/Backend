@@ -1,2 +1,29 @@
-# GET
-http://localhost:8080/api/v1/products/data
+
+### Add a new book to the database
+POST http://localhost:5000/api/v1/books/add
+Content-Type: application/json
+
+{
+    "title": "gashakuta",
+    "genre": "action",
+    "Status": "Available"
+}
+
+
+
+### Get All Books 
+GET http://localhost:5000/api/v1/books/test
+
+
+### Update a book
+PUT http://localhost:5000/api/v1/books/update?id=1
+Content-Type: application/json
+
+{
+  "title": "gashakuta",
+  "genre": "action",
+  "Status": "Unavailable"
+}
+
+### Get All Students
+GET http://localhost:5000/students/all

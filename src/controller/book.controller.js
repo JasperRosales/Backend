@@ -1,4 +1,4 @@
-import {getBooks, addBook, updateSomeBook} from '../model/book.model.js';
+import {getBooks, addBook, updateSomeBook, deleteSomeBook} from '../model/book.model.js';
 
 
 export const getAllbooks = async (req, res) => {
@@ -29,26 +29,31 @@ export const addSomeBook = async (req, res) => {
 }
 
 export const updateBook = async (req, res) => {
+    const {bookId} = req.params;
+    const {title, genre, status} = req.body;
     try {
-        const {id} = req.params;
-        const details = res.body;
-
-        try {
-            const result = await updateSomeBook(id, details);
-
-            if (result.affectedRows === 0) {
-                return res.status(404).json({ message: 'Book not found or no changes made.' });
-            }
-            res.status(200).json({
-                message: "sakses",
-                bookId: id
-            })
-        } catch (err){
+        const result = await updateSomeBook(title, genre, status, bookId);
+        res.status(200).json({
+            message: "sakses",
+            affectedrows: result
+        })
+    } catch (err){
             console.error(err);
             res.status(500).json({ error: 'May Mali sa iyo'})
-        }
-    } catch (err) {
+    } 
+}
+
+export const deleteBook = async (req, res) => {
+    const {bookId} = req.params;
+    try{
+        const result = await deleteSomeBook(bookId);
+        res.status(200).json({
+            message:"nadelete mo sya",
+            affectedRows: result
+        })    
+    }catch (err){
         console.error(err);
-        res.status(500).json({ error: "omsim"})
+        res.status(500).json({ error: 'Delete mo sya madelete sa buhay mo'})
     }
 }
+

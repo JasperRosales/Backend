@@ -4,26 +4,27 @@ POST http://localhost:5000/api/v1/books/add
 Content-Type: application/json
 
 {
-    "title": "gashakuta",
+    "title": "dexter the monkey",
     "genre": "action",
-    "Status": "Available"
+    "status": "Available"
 }
 
-
-
 ### Get All Books 
-GET http://localhost:5000/api/v1/books/test
+GET http://localhost:5000/api/v1/books/all
 
 
 ### Update a book
-PUT http://localhost:5000/api/v1/books/update?id=1
+PUT http://localhost:5000/api/v1/books/edit/2
 Content-Type: application/json
 
 {
-  "title": "gashakuta",
-  "genre": "action",
-  "Status": "Unavailable"
+    "title": "sample",
+    "genre": "daijobu",
+    "status": "Unavailable"
 }
+
+### Delete Book
+DELETE  http://localhost:5000/api/v1/books/delete/3
 
 ### Get All Students
 GET http://localhost:5000/students/all

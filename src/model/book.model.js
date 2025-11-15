@@ -12,9 +12,9 @@ export const getBooks = async () => {
 
 export const addBook = async (bookDetails) => {
     try{
-        const {title, genre, Status} = bookDetails;
-        const ADD_QUERY = 'INSERT INTO tblbook (title, genre, Status) values (?,?,?)';
-        const vals = [title, genre, Status];    
+        const {title, genre, status} = bookDetails;
+        const ADD_QUERY = 'INSERT INTO tblbook (title, genre, status) values (?,?,?)';
+        const vals = [title, genre, status];    
 
         const [res] = await pool.query(ADD_QUERY, vals);
         return res.insertId;
@@ -25,14 +25,24 @@ export const addBook = async (bookDetails) => {
     }
 }
 
-export const updateSomeBook = async (bookId, bookdetails) => {
-    try{
-        const UPDATE_QUERY = 'UPDATE tblbook SET Status = ? where id = ?'
-
-        const [res] = await pool.query(UPDATE_QUERY, [bookdetails.Status, bookId])
-        return res;
-    } catch (err){
-        console.error(err, "gagi ka boi update model")
+export const updateSomeBook = async (title, genre, status, bookId) => {
+    try {
+      const [result] = await pool.query(
+          "UPDATE tblbook SET title=?, genre=?, status=? WHERE id=?",
+          [title, genre, status, bookId]
+      );
+      return result.affectedRows;
+    } catch (err) {
+      console.error(err, "gagi ka boi update model");
+      throw err; 
     }
+};
+
+export const deleteSomeBook = async (bookId) => {
+    const [res] = await pool.query(
+        'DELETE FROM tblbook WHERE id= ?', [bookId]
+    );
+    return res.affectedRows;
+   
 }
 

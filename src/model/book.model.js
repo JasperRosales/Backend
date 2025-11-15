@@ -36,7 +36,7 @@ export const updateSomeBook = async (title, genre, status, bookId) => {
       console.error(err, "gagi ka boi update model");
       throw err; 
     }
-};
+}
 
 export const deleteSomeBook = async (bookId) => {
     const [res] = await pool.query(

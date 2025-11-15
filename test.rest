@@ -26,5 +26,32 @@ Content-Type: application/json
 ### Delete Book
 DELETE  http://localhost:5000/api/v1/books/delete/3
 
+
+
+
 ### Get All Students
-GET http://localhost:5000/students/all
+GET http://localhost:5000/api/v1/students/all
+
+
+### Add a new student to the database
+POST http://localhost:5000/api/v1/students/add
+Content-Type: application/json
+
+{
+    "name": "Marco of the Darkness",
+    "srcode": "23-54321",
+    "course": "BSIT"
+}
+
+### Update a student
+PUT http://localhost:5000/api/v1/students/edit/1
+Content-Type: application/json
+
+{
+    "name": "Dexter D. Monkey",
+    "srcode": "23-12345",
+    "course": "BSIT"
+}
+
+### Delete Book
+DELETE  http://localhost:5000/api/v1/students/delete/3

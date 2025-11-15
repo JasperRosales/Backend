@@ -16,7 +16,12 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/api/v1/books', bookRouter);
-app.use('/students', studentRouter);
+app.use('/api/v1/students', studentRouter);
+
+app.use((req, res, next) => {
+    console.log(req.path, req.method);
+    next();
+})
 
 app.listen(PORT, ()=> {
     try{

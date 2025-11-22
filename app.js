@@ -2,9 +2,12 @@ import express from "express";
 import {PORT, ORIGIN} from './src/config/env.js';
 import bookRouter from './src/routes/books.routes.js';
 import studentRouter from './src/routes/student.routes.js';
+import authRouter from './src/routes/user.routes.js';
+
 import cors from 'cors';
 
 const app = express();
+
 
 const corsOptions = {
     origin: `${ORIGIN}`, 
@@ -17,6 +20,8 @@ app.use(express.json());
 
 app.use('/api/v1/books', bookRouter);
 app.use('/api/v1/students', studentRouter);
+app.use('/api/v1/auth', authRouter);
+
 
 app.use((req, res, next) => {
     console.log(req.path, req.method);
